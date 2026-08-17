@@ -11,7 +11,7 @@ function applyTripOverrides() {
   tripDays.forEach(day => {
     day.sections.forEach(section => {
       section.items.forEach(item => {
-        if (item.name === 'BONGENCOFFEE Ginza') {
+        if (item.name === 'BONGENCOFFEE Ginza' || item.name === 'GENTLE MONSTER') {
           item.priority = 'must';
         }
       });
