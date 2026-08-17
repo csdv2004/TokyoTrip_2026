@@ -1,5 +1,9 @@
 const maps = q => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 const directions = q => `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(q)}`;
+const commonsFile = (filename, width=1400) =>
+  `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=${width}`;
+const commonsPage = filename =>
+  `https://commons.wikimedia.org/wiki/File:${encodeURIComponent(filename)}`;
 
 const HOTEL = {
   name: '新宿燦路都廣場大飯店',
@@ -10,10 +14,16 @@ const HOTEL = {
 const tripDays = [
   {
     id:'0821', tab:'8/21 五', title:'8/21（五）原宿・澀谷', subtitle:'抵達東京後的原宿／表參道／澀谷散策日', badge:'DAY 1',
-    route:['機場','新宿飯店','原宿','Cat Street','表參道','神南','澀谷','飯店'],
+    route:['NRT 成田機場','新宿飯店','原宿','Cat Street','表參道','神南','澀谷','飯店'],
+    photo:{
+      file:'Shibuya crossing.jpg',
+      alt:'澀谷十字路口',
+      label:'SHIBUYA',
+      credit:'Hide1228 · Wikimedia Commons'
+    },
     sections:[
       {title:'✈️ 抵達東京', items:[
-        {time:'07:55–12:25', name:'EVA Air 航班', note:'抵達東京', priority:'must'},
+        {time:'07:55–12:25', name:'EVA Air BR184｜TPE → NRT', note:'桃園國際機場 → NRT 成田國際機場', priority:'must', map:'Narita International Airport'},
         {time:'13:00', name:'搭利木津巴士 or NEX 前往飯店', note:`先到 ${HOTEL.name} 寄放行李`, priority:'must', map:HOTEL.map}
       ]},
       {title:'🍣 午餐', items:[
@@ -43,6 +53,12 @@ const tripDays = [
   {
     id:'0822', tab:'8/22 六', title:'8/22（六）新宿', subtitle:'新宿逛街／百貨／夜景日', badge:'DAY 2',
     route:['飯店','新宿南口','高島屋／NEWoMan','伊勢丹／東口','東京都廳','飯店'],
+    photo:{
+      file:'Tokyo metropolitan government building 1.jpg',
+      alt:'新宿東京都廳',
+      label:'SHINJUKU',
+      credit:'Gustave67 · Wikimedia Commons · CC BY-SA 4.0'
+    },
     sections:[
       {title:'☀️ 早餐／上午', items:[
         {time:'08:30', name:"BOUL'ANGE Shinjuku Southern Terrace", map:"BOUL'ANGE Shinjuku Southern Terrace", priority:'must'},
@@ -74,6 +90,12 @@ const tripDays = [
   {
     id:'0823', tab:'8/23 日', title:'8/23（日）銀座', subtitle:'銀座購物＋有樂町午餐日', badge:'DAY 3',
     route:['飯店','銀座','有樂町','銀座四丁目','西銀座','新宿晚餐','飯店'],
+    photo:{
+      file:'Ginza at night, Tokyo, 20240823 1919 5592.jpg',
+      alt:'東京銀座夜景',
+      label:'GINZA',
+      credit:'Jakub Hałun · Wikimedia Commons'
+    },
     sections:[
       {title:'☕ 上午／午餐', items:[
         {time:'09:20', name:'前往銀座', priority:'must'},
@@ -98,6 +120,12 @@ const tripDays = [
   {
     id:'0824', tab:'8/24 一', title:'8/24（一）六本木', subtitle:'藝術展覽＋六本木周邊散策日', badge:'DAY 4',
     route:['飯店','六本木 Hills','森美術館','東京中城','西麻布','飯店'],
+    photo:{
+      file:'Roppongi Hills from Tokyo Tower Day.jpg',
+      alt:'六本木 Hills 與東京市景',
+      label:'ROPPONGI',
+      credit:'Chris 73 · Wikimedia Commons'
+    },
     sections:[
       {title:'🥐 早餐／早上', items:[
         {time:'08:30', name:'bricolage bread & co.', map:'bricolage bread & co Roppongi', priority:'must'},
@@ -127,6 +155,12 @@ const tripDays = [
   {
     id:'0825', tab:'8/25 二', title:'8/25（二）川越・澀谷・代官山', subtitle:'川越半日＋下午澀谷／代官山散策', badge:'DAY 5',
     route:['飯店','川越','澀谷','代官山／中目黑','新宿','飯店'],
+    photo:{
+      file:'Kawagoe Kura no Machi 21.jpg',
+      alt:'川越藏造老街',
+      label:'KAWAGOE',
+      credit:'Zairon · Wikimedia Commons'
+    },
     sections:[
       {title:'⛩️ 上午｜川越', items:[
         {time:'07:20', name:'川越冰川神社', note:'拿御守', map:'Kawagoe Hikawa Shrine', priority:'must'},
@@ -160,8 +194,14 @@ const tripDays = [
     ]
   },
   {
-    id:'0826', tab:'8/26 三', title:'8/26（三）返程日', subtitle:'東京最後半日＋回程', badge:'DAY 6',
-    route:['飯店','明治神宮','新宿午餐','京王百貨','機場'],
+    id:'0826', tab:'8/26 三', title:'8/26（三）返程日', subtitle:'東京最後半日＋BR197 回程', badge:'DAY 6',
+    route:['飯店','明治神宮','新宿午餐','京王百貨','NRT 成田機場','TPE 桃園'],
+    photo:{
+      file:'Meiji Shrine - Tokyo, Japan - DSC05456.jpg',
+      alt:'明治神宮',
+      label:'MEIJI JINGU',
+      credit:'Daderot · Wikimedia Commons · CC0'
+    },
     sections:[
       {title:'⛩️ 上午', items:[
         {time:'', name:'明治神宮', map:'Meiji Jingu Tokyo', priority:'must'},
@@ -169,7 +209,7 @@ const tripDays = [
         {time:'', name:'GATEAU FESTA HARADA 京王百貨新宿店', note:'老虎紅絲絨蛋糕【東京限定】', map:'GATEAU FESTA HARADA Keio Shinjuku', priority:'must'}
       ]},
       {title:'✈️ 回程', items:[
-        {time:'14:25–17:05', name:'搭機返台', priority:'must'}
+        {time:'14:25–17:05', name:'EVA Air BR197｜NRT → TPE', note:'NRT 成田國際機場 → 桃園國際機場', map:'Narita International Airport', priority:'must'}
       ]},
       {title:'🍽️ 本趟想吃清單', items:[
         {time:'', name:'燒肉・鰻魚・壽喜燒・拉麵・生魚片壽司・吉野家', priority:'flex'}
@@ -219,14 +259,29 @@ function mustItems(day){
 function renderTabs(activeId){
   tabsEl.innerHTML = tripDays.map(d => `<button class="day-tab ${d.id===activeId?'active':''}" data-day="${d.id}">${d.tab}</button>`).join('');
 }
+function renderPhoto(day){
+  if(!day.photo) return '';
+  return `
+    <figure class="day-photo">
+      <img src="${commonsFile(day.photo.file)}" alt="${day.photo.alt}" loading="lazy">
+      <div class="day-photo-overlay">
+        <span>${day.photo.label}</span>
+        <strong>${day.subtitle}</strong>
+      </div>
+      <figcaption>
+        <span>${day.photo.credit}</span>
+        <a href="${commonsPage(day.photo.file)}" target="_blank" rel="noopener noreferrer">圖片來源 ↗</a>
+      </figcaption>
+    </figure>`;
+}
 function renderOverview(day){
   const stats = dayStats(day);
   const must = mustItems(day);
   return `
-    <section class="overview-card" aria-label="${day.title} 4比3行程總覽">
+    <section class="overview-card" aria-label="${day.title} 行程總覽">
       <div class="overview-top">
         <div>
-          <div class="overview-label">4:3 DAILY OVERVIEW</div>
+          <div class="overview-label">DAILY OVERVIEW</div>
           <h3>${day.title.replace(/^8\/\d+（.）/, '')}</h3>
         </div>
         <div class="progress-wrap">
@@ -261,7 +316,10 @@ function renderDay(id, options={scroll:true}){
       <div><h2>${d.title}</h2><p>${d.subtitle}</p></div>
       <span class="day-badge">${d.badge}</span>
     </header>
-    ${renderOverview(d)}
+    <div class="day-feature-grid">
+      ${renderPhoto(d)}
+      ${renderOverview(d)}
+    </div>
     <div class="day-toolbar">
       <div class="filter-group" aria-label="行程篩選">
         <button class="filter-btn ${currentFilter==='all'?'active':''}" data-filter="all">全部</button>
