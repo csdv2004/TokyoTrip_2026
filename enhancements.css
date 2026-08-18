@@ -1,0 +1,75 @@
+/* Decorative layer for a livelier Tokyo travel feel. */
+body{
+  background-color:#f5f4ef;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cg fill='none' stroke='%2365785e' stroke-width='1.2' opacity='.075'%3E%3Cpath d='M-10 50 Q10 28 30 50 T70 50 T110 50 T150 50 T190 50'/%3E%3Cpath d='M-10 68 Q10 46 30 68 T70 68 T110 68 T150 68 T190 68'/%3E%3Cpath d='M-10 140 Q10 118 30 140 T70 140 T110 140 T150 140 T190 140'/%3E%3Cpath d='M-10 158 Q10 136 30 158 T70 158 T110 158 T150 158 T190 158'/%3E%3C/g%3E%3Cg fill='%23a58d5c' opacity='.07'%3E%3Ccircle cx='30' cy='18' r='2.4'/%3E%3Ccircle cx='126' cy='98' r='2.4'/%3E%3Ccircle cx='164' cy='26' r='1.8'/%3E%3Ccircle cx='72' cy='118' r='1.8'/%3E%3C/g%3E%3C/svg%3E"),
+    radial-gradient(circle at 8% 12%,rgba(163,141,92,.08),transparent 24%),
+    radial-gradient(circle at 92% 38%,rgba(101,120,94,.08),transparent 25%),
+    linear-gradient(180deg,#f7f6f1,#f2f1eb);
+  background-attachment:fixed,fixed,fixed,fixed;
+}
+
+/* Keep content readable while letting the background pattern peek through. */
+.hotel-card,.trip-note,.day-content{
+  background:rgba(255,253,250,.94);
+  backdrop-filter:blur(2px);
+}
+.itinerary-section{
+  background:rgba(255,255,255,.94);
+}
+
+/* Small decorative travel stamps in the page margins. */
+.app-shell{position:relative;isolation:isolate}
+.app-shell::before,.app-shell::after{
+  position:absolute;
+  z-index:-1;
+  pointer-events:none;
+  font-size:5.5rem;
+  line-height:1;
+  opacity:.045;
+  filter:grayscale(1);
+}
+.app-shell::before{content:'✿';left:-28px;top:180px;transform:rotate(-13deg)}
+.app-shell::after{content:'🗼';right:-34px;top:720px;transform:rotate(7deg)}
+
+/* Purpose icon before every itinerary item. */
+.place-heading{
+  display:flex;
+  align-items:flex-start;
+  gap:9px;
+}
+.item-purpose-icon{
+  flex:0 0 auto;
+  width:30px;
+  height:30px;
+  margin-top:-3px;
+  display:inline-grid;
+  place-items:center;
+  border-radius:10px;
+  background:linear-gradient(145deg,#f2f5ef,#e7ede3);
+  border:1px solid rgba(101,120,94,.18);
+  box-shadow:0 4px 12px rgba(58,70,52,.06);
+  font-size:1rem;
+  line-height:1;
+}
+.place-card:hover .item-purpose-icon{
+  transform:translateY(-1px) rotate(-2deg);
+  transition:.18s ease;
+}
+
+/* Give candidate dining sections a little visual distinction without looking like an alert. */
+.itinerary-section:has(.place-main h4 .item-purpose-icon[aria-label='漢堡排／蛋包飯']) .section-title{
+  background:linear-gradient(90deg,#f5eee2,#edf2ea);
+}
+
+@media(max-width:700px){
+  body{background-size:150px 150px,auto,auto,auto}
+  .app-shell::before{left:-12px;font-size:4rem}
+  .app-shell::after{right:-12px;font-size:4rem}
+  .item-purpose-icon{width:28px;height:28px;border-radius:9px;font-size:.95rem}
+  .place-heading{gap:7px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .place-card:hover .item-purpose-icon{transform:none}
+}
